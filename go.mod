@@ -1,6 +1,6 @@
 module BookStore
 
-go 1.23.0
+go 1.23
 
 require (
 	dario.cat/mergo v1.0.0 // indirect
