@@ -39,6 +39,6 @@ func Connect() {
 
 	// handle migrations
 	// AutoMigrate runs the migrations
-	DB.AutoMigrate(&models.User{})
+	DB.AutoMigrate(&models.User{}, &models.Store{})
 
 }

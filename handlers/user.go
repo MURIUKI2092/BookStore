@@ -85,7 +85,7 @@ func CreateSingleUser(w http.ResponseWriter, r *http.Request) {
 		Msg:  "Success",
 		Data: response,
 	}
-
+	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusCreated)
 	if err := json.NewEncoder(w).Encode(toReturnData); err != nil {
 		helpers.RespondWithError(w, http.StatusInternalServerError, "Failed to encode response")
@@ -134,7 +134,7 @@ func GetSingleUser(w http.ResponseWriter, r *http.Request) {
 		Msg:  "Success",
 		Data: response,
 	}
-
+	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	if err := json.NewEncoder(w).Encode(toReturnData); err != nil {
 		helpers.RespondWithError(w, http.StatusInternalServerError, "Failed to encode response")
@@ -218,7 +218,7 @@ func UpdateSingleUser(w http.ResponseWriter, r *http.Request) {
 		Msg:  "User updated successfully",
 		Data: response,
 	}
-
+	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	if err := json.NewEncoder(w).Encode(toReturnData); err != nil {
 		helpers.RespondWithError(w, http.StatusInternalServerError, "Failed to encode response")
@@ -296,7 +296,7 @@ func UpdateUserPassword(w http.ResponseWriter, r *http.Request) {
 		Msg:  "Password updated successfully",
 		Data: response,
 	}
-
+	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	if err := json.NewEncoder(w).Encode(toReturnData); err != nil {
 		helpers.RespondWithError(w, http.StatusInternalServerError, "Failed to encode response")
