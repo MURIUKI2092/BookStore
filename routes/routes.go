@@ -20,5 +20,10 @@ func RegisterUserRoutes(router *mux.Router) {
 	router.Handle("/store/new", middleware.Authenticate(http.HandlerFunc(handlers.CreateSingleBookStore))).Methods("POST")
 	router.Handle("/store", middleware.Authenticate(http.HandlerFunc(handlers.GetSingleBookStore))).Methods("GET")
 	router.Handle("/store", middleware.Authenticate(http.HandlerFunc(handlers.UpdateSingleBookStore))).Methods("PUT")
-	
+
+	// -------------------book-------------------------------------->
+	router.Handle("/book/new", middleware.Authenticate(http.HandlerFunc(handlers.CreatesSingleBook))).Methods("POST")
+	router.Handle("/book/all", middleware.Authenticate(http.HandlerFunc(handlers.GetAllBooks))).Methods("GET")
+	router.Handle("/book/single", middleware.Authenticate(http.HandlerFunc(handlers.GetSingleBook))).Methods("GET")
+	router.Handle("/book/update", middleware.Authenticate(http.HandlerFunc(handlers.UpdateSingleBook))).Methods("PUT")
 }

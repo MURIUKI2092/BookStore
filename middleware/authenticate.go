@@ -29,7 +29,7 @@ func Authenticate(next http.Handler) http.Handler {
 				helpers.RespondWithError(w, http.StatusUnauthorized, "Invalid token")
 				return
 			}
-			helpers.RespondWithError(w, http.StatusBadRequest, "Bad request")
+			helpers.RespondWithError(w, http.StatusUnauthorized, "Bad request")
 			return
 		}
 

@@ -65,7 +65,7 @@ func LoginUser(w http.ResponseWriter, r *http.Request) {
 		helpers.RespondWithError(w, http.StatusInternalServerError, "Error generating token")
 		return
 	}
-
+	w.Header().Set("Content-Type", "application/json")
 	// Return the token in the response
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(LoginResponse{Token: tokenString})
@@ -93,7 +93,7 @@ func GrabUserProfile(w http.ResponseWriter, r *http.Request) {
 		Msg:  "Success",
 		Data: response,
 	}
-
+	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	if err := json.NewEncoder(w).Encode(toReturnData); err != nil {
 		helpers.RespondWithError(w, http.StatusInternalServerError, "Failed to encode response")
