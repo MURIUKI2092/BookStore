@@ -1,21 +1,22 @@
 package models
 
 import (
+	"github.com/dgrijalva/jwt-go"
 	"github.com/google/uuid"
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
-	"github.com/dgrijalva/jwt-go"
 )
 
 type User struct {
 	gorm.Model
-	FirstName   string    `gorm:"size:100;not null"`
-	LastName    string    `gorm:"size:100;not null"`
-	PhoneNumber string    `gorm:"size:15;unique;not null"`
-	Email       string    `gorm:"size:100;unique;not null"`
-	Password    string    `gorm:"not null"`
-	Role        string    `gorm:"not null"`
-	UUID        uuid.UUID `gorm:"type:uuid;default:uuid_generate_v4()"`
+	FirstName     string    `gorm:"size:100;not null"`
+	LastName      string    `gorm:"size:100;not null"`
+	PhoneNumber   string    `gorm:"size:15;unique;not null"`
+	Email         string    `gorm:"size:100;unique;not null"`
+	Password      string    `gorm:"not null"`
+	Role          string    `gorm:"not null"`
+	UUID          uuid.UUID `gorm:"type:uuid;default:uuid_generate_v4()"`
+	LinkBookStore uuid.UUID `gorm:"type:uuid;"`
 }
 
 type UpdatePasswordRequest struct {
