@@ -66,7 +66,7 @@ func UserEmailPresent(email string) (*models.User, error) {
 }
 // this grabs a single user record using the uuid
 func GrabSingleUserWithUuid(userUuid string) (*models.User, error) {
-	// check if the uuid is a valid url
+	// check if the uuid is a valid uuid
 	uuidValid, err := uuid.Parse(userUuid)
 	if err != nil {
 		return nil, errors.New("invalid UUID format")
