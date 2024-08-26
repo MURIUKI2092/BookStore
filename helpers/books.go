@@ -4,7 +4,6 @@ import (
 	"BookStore/database"
 	"BookStore/models"
 	"errors"
-	"fmt"
 
 	"github.com/google/uuid"
 	"gorm.io/gorm"
@@ -42,7 +41,6 @@ func IsBookPresent(Title string, Store string) (bool, error) {
 
 }
 func AllStoreBooks(storeUuid string) ([]models.Book, error) {
-	fmt.Print("here is the store uuid %v", storeUuid)
 	var store models.Store
 	var books []models.Book
 	storePresent := database.DB.Where("uuid", storeUuid).First(&store)
@@ -68,7 +66,6 @@ func SingleBook(storeUuid string, bookUuid string) (*models.Book, error) {
 		return nil, errors.New("invalid UUID format")
 	}
 	var book models.Book
-	fmt.Printf("here is %v the store uuid: %v\n",storeUuid,bookUuid)
 
 	bookPresent := database.DB.Where("uuid=? AND store =?", uuidValid, storeUuid).First(&book)
 	if bookPresent.Error != nil {

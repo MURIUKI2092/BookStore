@@ -5,7 +5,7 @@ import (
 	"BookStore/helpers"
 	"BookStore/models"
 	"encoding/json"
-	"fmt"
+	
 	"net/http"
 )
 
@@ -19,7 +19,6 @@ func CreatesSingleBook(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	userPresent, err := helpers.GrabSingleUserWithUuid(userUuid)
-	fmt.Printf("user present: %v\n", userPresent)
 
 	if err != nil {
 		if err.Error() == "invalid UUID format" {
@@ -35,7 +34,6 @@ func CreatesSingleBook(w http.ResponseWriter, r *http.Request) {
 
 	}
 	bookStoreUuid := userPresent.LinkBookStore
-	fmt.Printf("userpresent %v", userPresent)
 	// Convert UUID to string
 	bookStoreUuidStr := bookStoreUuid.String()
 
@@ -59,7 +57,6 @@ func CreatesSingleBook(w http.ResponseWriter, r *http.Request) {
 	book.Store = bookStoreUuidStr
 	savedBook := database.DB.Create(&book)
 	if savedBook.Error != nil {
-		fmt.Printf("here is the error: %v", savedBook.Error)
 		helpers.RespondWithError(w, http.StatusBadRequest, "An error occurred while creating a single book")
 		return
 	}
@@ -191,7 +188,6 @@ func UpdateSingleBook(w http.ResponseWriter, r *http.Request) {
 	bookUuid := r.URL.Query().Get("uuid")
 	user, err := helpers.GrabSingleUserWithUuid(userUuid)
 	// here handle all the errors
-	fmt.Printf("here %v", user)
 	if err != nil {
 		if err.Error() == "invalid UUID format" {
 			helpers.RespondWithError(w, http.StatusBadRequest, err.Error())
